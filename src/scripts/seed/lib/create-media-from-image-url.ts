@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { Payload } from 'payload'
 
-export async function createMediaFromImageUrl(payload: Payload) {
+export async function createMediaFromImageUrl(payload: Payload, imageUrl: string) {
     try {
         const imageUrl = faker.image.personPortrait({ size: 256 })
 
