@@ -1,6 +1,6 @@
 import { Payload } from 'payload'
 import { isDuplicateError } from '../lib/is-duplicate-error'
-import { env } from '@/scripts/lib/env'
+import { env } from '@/lib/env'
 
 export async function seedAdmin(payload: Payload) {
     try {

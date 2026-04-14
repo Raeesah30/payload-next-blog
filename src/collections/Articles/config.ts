@@ -1,8 +1,9 @@
-import type { CollectionConfig, FieldHook } from 'payload'
+import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
+import type { CollectionConfig } from 'payload'
+import { CACHE_TAG_ARTICLES, STATUS_OPTIONS } from './constants'
 import { generateContentSummaryHook } from './hooks/generate-content-summary.hook'
 import { generateSlugHook } from './hooks/generate-slug.hook'
-import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
-import { STATUS_OPTIONS } from './constants'
+import { revalidateTag } from 'next/cache'
 
 export const Articles: CollectionConfig = {
     slug: 'articles',
@@ -19,7 +20,6 @@ export const Articles: CollectionConfig = {
             required: true,
             unique: true,
             hooks: { beforeValidate: [generateSlugHook] },
-
         },
         {
             name: 'content',
@@ -39,7 +39,7 @@ export const Articles: CollectionConfig = {
             hooks: {
                 beforeChange: [
                     ({ siblingData }) => {
-                        //ensure that the data is not stored in DB
+                        // ensure that the data is not stored in DB
                         delete siblingData.readTimeInMins
                     },
                 ],
@@ -55,8 +55,8 @@ export const Articles: CollectionConfig = {
         },
         {
             name: 'coverImage',
-            type: "upload",
-            relationTo: "media",
+            type: 'upload',
+            relationTo: 'media',
             required: true,
         },
         {
@@ -77,9 +77,12 @@ export const Articles: CollectionConfig = {
             type: 'date',
             required: true,
             admin: {
-                condition: (data) => data?.status === 'Published',
+                condition: (data) => data?.status === STATUS_OPTIONS.PUBLISHED,
                 date: { pickerAppearance: 'dayAndTime' },
             },
         },
     ],
+    hooks: {
+        afterChange: [() => revalidateTag(CACHE_TAG_ARTICLES, {})],
+    },
 }
