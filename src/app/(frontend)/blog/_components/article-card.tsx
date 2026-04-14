@@ -36,7 +36,7 @@ export function ArticleCard({
                     alt={`Cover image for "${title}"`}
                     width={600}
                     height={300}
-                    className="h-[200px] object-cover object-center w-full"
+                    className="h-50 object-cover object-center w-full"
                     placeholder="blur"
                     blurDataURL={coverImage.blurDataUrl}
                 />
