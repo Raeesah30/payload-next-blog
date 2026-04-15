@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArticleMetadata } from './article-metadata'
 
-
 type ArticleCardProps = {
     href: string
     title: string
@@ -36,13 +35,11 @@ export function ArticleCard({
                     alt={`Cover image for "${title}"`}
                     width={600}
                     height={300}
-                    className="h-50 object-cover object-center w-full"
-                    placeholder="blur"
-                    blurDataURL={coverImage.blurDataUrl}
+                    className="max-h-3200px] object-cover object-center"
                 />
 
                 {/* content */}
-                <div className="p-3 flex-1 flex flex-col gap-5">
+                <div className="p-3">
                     <header>
                         {/* title */}
                         <h2 className="font-bold text-lg">{title}</h2>
@@ -62,5 +59,5 @@ export function ArticleCard({
 }
 
 export function ArticleCardSkeleton() {
-    return <div className="rounded-md h-[350px] animate-pulse bg-gray-700" />
+    return <div className="rounded-md h-87.5 animate-pulse bg-gray-700" />
 }
