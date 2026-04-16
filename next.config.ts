@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
                 pathname: '/api/media/file/**',
             },
         ],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'payload-next-blog-three.vercel.app',
+            },
+        ],
     },
     webpack: (webpackConfig) => {
         webpackConfig.resolve.extensionAlias = {
