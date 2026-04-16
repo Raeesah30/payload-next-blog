@@ -42,7 +42,7 @@ export function ArticleCard({
                 <div className="p-3 flex-col flex-1">
                     <header>
                         {/* title */}
-                        <h2 className="font-bold text-lg line-clamp-1">{title}</h2>
+                        <h2 className="font-bold text-lg">{title}</h2>
                         {/* summary */}
                         <p className="mt-2 line-clamp-3">{summary}</p>
                     </header>
