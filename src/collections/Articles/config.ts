@@ -83,6 +83,14 @@ export const Articles: CollectionConfig = {
         },
     ],
     hooks: {
-        afterChange: [() => revalidateTag(CACHE_TAG_ARTICLES, {})],
+        afterChange: [
+            () => {
+                try {
+                    revalidateTag(CACHE_TAG_ARTICLES)
+                } catch (e) {
+                    // ignore - revalidateTag only works inside Next.js server context
+                }
+            }
+        ],
     },
 }
