@@ -44,7 +44,7 @@ export function ArticleCard({
                         {/* title */}
                         <h2 className="font-bold text-lg">{title}</h2>
                         {/* summary */}
-                        <p className="mt-2">{summary}</p>
+                        <p className="mt-2 line-clamp-3">{summary}</p>
                     </header>
 
                     <ArticleMetadata
