@@ -84,12 +84,23 @@ export const Articles: CollectionConfig = {
     ],
     hooks: {
         afterChange: [
-            () => {
+            ({ doc }) => {
                 try {
-                    revalidateTag(CACHE_TAG_ARTICLES, 'page')
+                    revalidateTag(CACHE_TAG_ARTICLES)
                 } catch (e) {
-                    // ignore - only works inside Next.js server context
+                    console.error('Failed to revalidate cache:', e)
                 }
+                return doc
+            }
+        ],
+        afterDelete: [
+            ({ doc }) => {
+                try {
+                    revalidateTag(CACHE_TAG_ARTICLES)
+                } catch (e) {
+                    console.error('Failed to revalidate cache:', e)
+                }
+                return doc
             }
         ],
     },
