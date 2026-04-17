@@ -86,7 +86,7 @@ export const Articles: CollectionConfig = {
         afterChange: [
             ({ doc }) => {
                 try {
-                    revalidateTag(CACHE_TAG_ARTICLES)
+                    revalidateTag(CACHE_TAG_ARTICLES, 'page')
                 } catch (e) {
                     console.error('Failed to revalidate cache:', e)
                 }
@@ -96,7 +96,7 @@ export const Articles: CollectionConfig = {
         afterDelete: [
             ({ doc }) => {
                 try {
-                    revalidateTag(CACHE_TAG_ARTICLES)
+                    revalidateTag(CACHE_TAG_ARTICLES, 'page')
                 } catch (e) {
                     console.error('Failed to revalidate cache:', e)
                 }
