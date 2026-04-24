@@ -180,13 +180,6 @@ For a full step-by-step guide, refer to the project documentation included in th
 
 ---
 
-## 👩‍💻 Author
-
-**Ra'eesah GoolamOssen**
-Final Year Software Engineering Student
-
----
-
 ## 📄 License
 
 This project is for educational purposes.
