@@ -1,67 +1,194 @@
-# Payload Blank Template
+# 🚀 Payload CMS + Next.js Blog
 
-This template comes configured with the bare minimum to get started on anything you need.
+A full-stack blog application built using **Payload CMS** and **Next.js**, featuring a modern admin panel, PostgreSQL database, and a dynamic frontend.
 
-## Quick start
+This project demonstrates how to build a headless CMS-powered blog with full customization, type safety, and deployment readiness.
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+---
 
-## Quick Start - local setup
+## 📌 Features
 
-To spin up this template locally, follow these steps:
+* 🧠 Headless CMS using Payload
+* ⚡ Next.js frontend (App Router)
+* 🗄️ PostgreSQL database
+* 🔐 Authentication & Admin panel
+* 🖼️ Media uploads with blur hashing
+* ✍️ Article & Author collections
+* 🌱 Database seeding
+* 🌍 Deployment-ready setup
 
-### Clone
+---
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+## 🛠️ Tech Stack
 
-### Development
+* **Frontend:** Next.js
+* **Backend/CMS:** Payload CMS
+* **Database:** PostgreSQL
+* **Language:** TypeScript
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URL` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+---
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+## 📁 Project Structure
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+```bash
+payload-next-blog/
+│
+├── src/
+│   ├── app/                # Next.js App Router pages
+│   ├── collections/       # Payload collections (Users, Articles, Media)
+│   ├── components/        # Reusable UI components
+│   ├── lib/               # Utilities & helpers
+│   ├── payload.config.ts  # Payload configuration
+│   └── seed/              # Seed data scripts
+│
+├── public/                # Static assets
+├── .env                   # Environment variables
+├── package.json
+└── tsconfig.json
+```
 
-#### Docker (Optional)
+---
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+## ⚙️ Installation & Setup
 
-To do so, follow these steps:
+### 1. Clone the Repository
 
-- Modify the `MONGODB_URL` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URL` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+```bash
+git clone https://github.com/Raeesah30/payload-next-blog.git
+cd payload-next-blog
+```
 
-## How it works
+---
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+### 2. Install Dependencies
 
-### Collections
+```bash
+npm install
+```
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+---
 
-- #### Users (Authentication)
+### 3. Setup Environment Variables
 
-    Users are auth-enabled collections that have access to the admin panel.
+Create a `.env` file in the root directory:
 
-    For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+```env
+DATABASE_URI=postgres://username:password@127.0.0.1:5432/payload_next_blog
+PAYLOAD_SECRET=your_secret_key
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+```
 
-- #### Media
+---
 
-    This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+### 4. Setup PostgreSQL Database
 
-### Docker
+Make sure PostgreSQL is installed and running.
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+Create the database:
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+```bash
+psql -U postgres -c "CREATE DATABASE payload_next_blog"
+```
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+---
 
-## Questions
+### 5. Run the Development Server
 
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+```bash
+npm run dev
+```
+
+* Frontend: http://localhost:3000
+* Admin Panel: http://localhost:3000/admin
+
+---
+
+## 🌱 Database Seeding
+
+To populate initial data (authors, articles, etc.):
+
+```bash
+npm run seed
+```
+
+---
+
+## 🧩 Collections Overview
+
+### 👤 Users
+
+* Authentication-enabled
+* Admin access
+
+### 📝 Articles
+
+* Title, content, author relationship
+* Rich text support
+
+### 🖼️ Media
+
+* File uploads
+* Image optimization with blur hashing
+
+---
+
+## 🧪 Key Functionalities
+
+* Auto login for development
+* Type-safe Payload config
+* Dynamic routing in Next.js
+* CMS-driven frontend rendering
+
+---
+
+## 🚀 Deployment
+
+You can deploy this project using:
+
+* **Vercel** (Frontend)
+* **Railway / Render / Supabase** (Database)
+
+Make sure to:
+
+* Update environment variables
+* Use a production PostgreSQL database
+* Set correct server URLs
+
+---
+
+## ⚠️ Common Issues
+
+### ❌ `psql not found`
+
+* Add PostgreSQL `bin` folder to system PATH
+
+### ❌ Git push rejected
+
+```bash
+git push --force
+```
+
+### ❌ Merge conflicts
+
+* Resolve conflicts in `package.json` and re-run install
+
+---
+
+## 📚 Documentation
+
+For a full step-by-step guide, refer to the project documentation included in this repository.
+
+---
+
+## 👩‍💻 Author
+
+**Ra'eesah GoolamOssen**
+Final Year Software Engineering Student
+
+---
+
+## 📄 License
+
+This project is for educational purposes.
+
+---
